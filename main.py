@@ -1,18 +1,47 @@
 import pandas as pd
 
 
-sheets_dict = pd.read_excel('/home/mehrnoosh/workspace/pluto/myreport.xlsx', sheet_name=None)
-headers = sheets_dict['whole_avg-1'].columns
+file_path = '/home/mehrnoosh/workspace/pluto/myreport.xlsx'
+excel_file = pd.ExcelFile(file_path)
+sheet_names = excel_file.sheet_names
+sheets_dict = pd.read_excel(file_path, sheet_name=None)
 
-full_table = pd.DataFrame()
-for sheet_name, sheet in sheets_dict.items():
-    sheet['whole_avg-1'] = sheet_name
-    counter = 0
-    for i in range(len(sheets_dict[sheet_name])):
-        print(sheets_dict[sheet_name][counter:counter+1])
-        for j in headers:
-            value = sheets_dict[sheet_name][counter:counter+1][j].item()
-            print(j)
-            print(value)
 
-        counter += 1
+def database_connector():
+    pass
+
+
+def get_header(sheets_dict):
+    headers_list = []
+    # import pudb; pudb.set_trace()
+    for name in sheet_names:
+        headers_list.append(sheets_dict[name].columns)
+
+    return headers_list
+
+
+def row_seperator(sheet_names):
+    xl = pd.ExcelFile(file_path)
+    for sheet in sheet_names:
+        df = xl.parse(sheet)
+        print(sheet)
+        for i in range(len(sheets_dict[sheet])):
+            # print(df.loc[i])
+            values = ','.join([str(elem) for elem in df.loc[i]])
+            print("insert into <table name> values(%s)" %values)
+
+
+def run():
+    database_connector()
+    row_seperator(sheet_names)
+
+
+if __name__ == '__main__':
+    run()
+    # for sheet in sheet_names:
+    #     df = xl.parse(sheet)
+    #     print(sheet)
+    #     for i in range(len(sheets_dict[sheet])):
+    #         # print(df.loc[i])
+    #         values = ','.join([str(elem) for elem in df.loc[i]])
+    #         print("insert into <table name> values(%s)" %values)
