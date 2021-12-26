@@ -1,0 +1,53 @@
+Create Table: CREATE TABLE `cpu_status` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `host_name` varchar(40) DEFAULT NULL,
+  `average_in_precent` float(10,7) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+1 row in set (0.00 sec)
+
+
+Create Table: CREATE TABLE `disk_status` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `host_name` varchar(40) DEFAULT NULL,
+  `average` float(10,7) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+1 row in set (0.00 sec)
+
+Create Table: CREATE TABLE `incident` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `host_name` varchar(40) DEFAULT NULL,
+  `problem` float(10,7) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+1 row in set (0.01 sec)
+
+
+Create Table: CREATE TABLE `memory_utilization_statusaverage_in_precent` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `host_name` varchar(40) DEFAULT NULL,
+  `average` float(10,7) DEFAULT NULL,
+  `maximum` float(10,7) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+1 row in set (0.00 sec)
+
+
+Create Table: CREATE TABLE `whole_avg` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `hostname` varchar(100) DEFAULT NULL,
+  `from_time` datetime DEFAULT NULL,
+  `to_time` datetime DEFAULT NULL,
+  `number_of_unique_hosts` int DEFAULT NULL,
+  `CPU_utilization_percent` float(10,7) DEFAULT NULL,
+  `Disk_utilization_percent` float(10,7) DEFAULT NULL,
+  `Memory_utilization_percent` float(10,7) DEFAULT NULL,
+  `Total_memory` float(10,7) DEFAULT NULL,
+  `Total_space` float(10,7) DEFAULT NULL,
+  `Available_memory` float(10,7) DEFAULT NULL,
+  `Bits_sent` float(10,7) DEFAULT NULL,
+  `Bits_recieved` float(10,7) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+1 row in set (0.00 sec)

@@ -1,14 +1,20 @@
 import pandas as pd
+import mysql.connector
 
 
-file_path = '/home/mehrnoosh/workspace/pluto/myreport.xlsx'
+file_path = '/home/workspace/pluto/myreport.xlsx'
 excel_file = pd.ExcelFile(file_path)
 sheet_names = excel_file.sheet_names
 sheets_dict = pd.read_excel(file_path, sheet_name=None)
 
 
-def database_connector():
-    pass
+def database_connector(host, database, user, password):
+    mysql.connector.connect(
+        host=host,
+        database=database,
+        user=user,
+        password=password
+    )
 
 
 def get_header(sheets_dict):
@@ -32,7 +38,8 @@ def row_seperator(sheet_names):
 
 
 def run():
-    database_connector()
+    # import pudb; pudb.set_trace()
+    # db = database_connector('localhost', 'zabbix_report', 'worker', 'password')
     row_seperator(sheet_names)
 
 
